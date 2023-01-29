@@ -74,5 +74,4 @@ def get_person_jobs(person_id: int) -> list[dict[str, str]]:
 # print(get_companies_by_country('Pakistan'))
 # print(get_company_employees(1, True))
 # print(get_company_employees(1))
-print(get_person_jobs(3))
-
+# print(get_person_jobs(3))
