@@ -10,21 +10,21 @@ from employees_app.models import *
 
 if __name__ == '__main__':
 
-    # # Add persons:
-    # with open('schemas/persons.csv', 'r') as f:
-    #     reader = csv.DictReader(f)
-    #     for row in reader:
-    #         Person(id=int(row['id']), first_name=row['first_name'], last_name=row['last_name'],
-    #                personal_email=row['personal_email'], gender=row['gender'],
-    #                birth_date=datetime.strptime(row['birth_date'], "%m/%d/%Y")).save()
+    # Add persons:
+    with open('schemas/persons.csv', 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            Person(id=int(row['id']), first_name=row['first_name'], last_name=row['last_name'],
+                   personal_email=row['personal_email'], gender=row['gender'],
+                   birth_date=datetime.strptime(row['birth_date'], "%m/%d/%Y")).save()
     
-    # # Add companies:
-    # with open('schemas/companies.csv', 'r') as f:
-    #     reader = csv.DictReader(f)
-    #     for row in reader:
-    #         Company(id=int(row['id']), company_name=row['company_name'], country=row['country'],
-    #                city=row['city'], address=row['address'],
-    #                phone_num=row['phone_num']).save()
+    # Add companies:
+    with open('schemas/companies.csv', 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            Company(id=int(row['id']), company_name=row['company_name'], country=row['country'],
+                   city=row['city'], address=row['address'],
+                   phone_num=row['phone_num']).save()
 
     # Add employees:
     with open('schemas/employees.csv', 'r') as f:
