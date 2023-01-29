@@ -26,7 +26,7 @@ def get_people_by_age(age: int) -> list[Person]:
     :return:
     """
     birth_year = str(datetime.now().year - age)
-    return list(Person.objects.filter(birth_date__contains=datetime.strptime(birth_year, '%Y').year))
+    return list(Person.objects.filter(birth_date__contains=birth_year))
 
 
 def get_people_cnt_by_gender(gender: str) -> list[Person]:
@@ -65,8 +65,9 @@ def get_person_jobs(person_id: int) -> list[dict[str, str]]:
     :param person_id:
     :return:
     """
-    return [{Company.objects.get(id=employee.company_id.id).company_name: employee.job_title}
-            for employee in Employee.objects.filter(person_id=person_id)]
+    jobs = Employee.objects.prefetch_related('company_id').filter(person_id=person_id)
+    return [{job.company_id.company_name: job.job_title} for job in jobs]
+
 
 # print(get_person_name_by_id(50))
 # print(get_people_cnt_by_gender('Male'))
@@ -74,4 +75,4 @@ def get_person_jobs(person_id: int) -> list[dict[str, str]]:
 # print(get_companies_by_country('Pakistan'))
 # print(get_company_employees(1, True))
 # print(get_company_employees(1))
-# print(get_person_jobs(3))
+# print(get_person_jobs(68))
