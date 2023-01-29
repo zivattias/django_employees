@@ -47,7 +47,7 @@ def get_companies_by_country(country: str) -> list[str]:
     return list(Company.objects.filter(country=country))
 
 
-def get_company_employees(company_id: int, current_only: bool=None) -> list[Person]:
+def get_company_employees(company_id: int, current_only: bool=False) -> list[Person]:
     """
     Given company id, return list of persons work(ed) for this company
     :param company_id:
@@ -68,11 +68,11 @@ def get_person_jobs(person_id: int) -> list[dict[str, str]]:
     jobs = Employee.objects.prefetch_related('company_id').filter(person_id=person_id)
     return [{job.company_id.company_name: job.job_title} for job in jobs]
 
-
-# print(get_person_name_by_id(50))
-# print(get_people_cnt_by_gender('Male'))
-# print(get_people_by_age(33))
-# print(get_companies_by_country('Pakistan'))
-# print(get_company_employees(1, True))
-# print(get_company_employees(1))
-# print(get_person_jobs(68))
+if __name__ == '__main__':
+    print(get_person_name_by_id(50))
+    print(get_people_cnt_by_gender('Male'))
+    print(get_people_by_age(33))
+    print(get_companies_by_country('Pakistan'))
+    print(get_company_employees(1, True))
+    print(get_company_employees(1))
+    print(get_person_jobs(68))
